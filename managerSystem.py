@@ -83,23 +83,22 @@ class PersonManager(object):
     def mod_person(self):
         """修改人员信息"""
         # 输入要修改的人员姓名
-        name=input("请输入要修改的人员姓名：")
+        name = input("请输入要修改的人员姓名：")
         # 遍历列表，如果要修改的人员存在则修改，否则报错
         for i in self.person_list:
             if i.name == name:
-                tel=input("请输入新手机号：")
-                i.tel=tel
+                tel = input("请输入新手机号：")
+                i.tel = tel
                 print("修改成功")
                 print(i)
                 break
         else:
             print("要修改的人员不存在")
-        
 
     def search_person(self):
         """查询人员信息"""
         # 请输入要查询的人员姓名
-        name=input("请输入要查询的人员姓名：")
+        name = input("请输入要查询的人员姓名：")
         # 遍历列表，如果要查询的人员存在则显示，否则报错
         for i in self.person_list:
             if i.name == name:
@@ -117,25 +116,28 @@ class PersonManager(object):
     def save_person(self):
         """保存人员信息"""
         # 打开文件
-        f=open("person.data","w")
+        f = open("person.data", "w")
         # 文件写入数据
         # 人员对象转换成字典
-        new_list=[i.__dict__ for i in self.person_list]
+        new_list = [i.__dict__ for i in self.person_list]
         f.write(str(new_list))
         # 关闭文件
         f.close()
+        print("保存成功")
+
     def load_person(self):
         """加载人员信息"""
         # 尝试以“r”模式打开数据文件，如果文件不存在，则提示用户;文件存在则读取数据
         try:
-            f=open("person.data","r")
+            f = open("person.data", "r")
         except:
-            f=open("person.data","w")
+            f = open("person.data", "w")
         else:
-            data=f.read()
+            data = f.read()
             print(data)
             # 读取的文件是字符串，需要转换。【｛｝】转换【人员对象】
-            new_list=eval(data)
-            self.person_list=[Person(i["name"],i["gender"],i["tel"]) for i in new_list]
+            new_list = eval(data)
+            self.person_list = [
+                Person(i["name"], i["gender"], i["tel"]) for i in new_list]
         finally:
             f.close()
