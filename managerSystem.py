@@ -40,6 +40,8 @@ class PersonManager(object):
             elif menu_num == 7:
                 # 退出系统
                 break
+            else:
+                print("输入错误，请重新输入")
     # 系统功能函数
     # 显示功能菜单  静态方法
 
