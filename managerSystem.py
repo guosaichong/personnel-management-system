@@ -61,13 +61,20 @@ class PersonManager(object):
         """添加人员信息"""
         # 输入人员信息
         name = input("请输入姓名：")
-        gender = input("请输入性别：")
-        tel = input("请输入电话：")
-        # 创建人员对象
-        person = Person(name, gender, tel)
-        # 添加到人员列表
-        self.person_list.append(person)
-        print(person)
+        # 遍历人员列表，如果存在则报错，如果不存在则添加
+        for i in self.person_list:
+            if i.name == name:
+                print("人员已存在")
+                break
+        else:
+
+            gender = input("请输入性别：")
+            tel = input("请输入电话：")
+            # 创建人员对象
+            person = Person(name, gender, tel)
+            # 添加到人员列表
+            self.person_list.append(person)
+            print(person)
 
     def del_person(self):
         """删除人员信息"""
